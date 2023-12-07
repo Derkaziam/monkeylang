@@ -34,7 +34,30 @@ public class Lexer {
             tok = NewToken(TokenType.ASSIGN, "=");
         case ';':
             tok = NewToken(TokenType.SEMICOLON)
-
+        case '(':
+            tok = NewToken(TokenType.LPAREN)
+        case ')':
+            tok = NewToken(TokenType.RPAREN)
+        case '{':
+            tok = NewToken(TokenType.LBRACE)
+        case '}':
+            tok = NewToken(TokenType.RBRACE)
+        case ',':
+            tok = NewToken(TokenType.COMMA)
+        case '+':
+            tok = NewToken(TokenType.PLUS)
+        case '-':
+            tok = NewToken(TokenType.MINUS)
+        case '*':
+            tok = NewToken(TokenType.ASTERISK)
+        case '/':
+            tok = NewToken(TokenType.SLASH)
+        case '!':
+            tok = NewToken(TokenType.BANG)
         }
+    }
+
+    private Token NewToken(TokenType type, string lit = currentChar.ToString()) {
+        return (Token) { Type = type, Value = lit };
     }
 }
