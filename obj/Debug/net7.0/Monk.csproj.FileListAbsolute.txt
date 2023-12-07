@@ -1,0 +1,5 @@
+/workspaces/monkeylang/obj/Debug/net7.0/Monk.csproj.AssemblyReference.cache
+/workspaces/monkeylang/obj/Debug/net7.0/Monk.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/monkeylang/obj/Debug/net7.0/Monk.AssemblyInfoInputs.cache
+/workspaces/monkeylang/obj/Debug/net7.0/Monk.AssemblyInfo.cs
+/workspaces/monkeylang/obj/Debug/net7.0/Monk.csproj.CoreCompileInputs.cache

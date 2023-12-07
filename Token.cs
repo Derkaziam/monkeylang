@@ -1,5 +1,4 @@
-
-namespace Monk.Token;
+namespace Monk.Tok;
 
 public struct Token {
     public string Value { get; }

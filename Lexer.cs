@@ -1,4 +1,4 @@
-using Monk.Token;
+using Monk.Tok;
 
 namespace Monk.Lex;
 
@@ -30,8 +30,11 @@ public class Lexer {
     private Token NextToken() {
         Token tok;
         switch (currentChar) {
-        case '='
-            tok = (Token){  }
+        case '=':
+            tok = NewToken(TokenType.ASSIGN, "=");
+        case ';':
+            tok = NewToken(TokenType.SEMICOLON)
+
         }
     }
 }
