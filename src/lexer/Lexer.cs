@@ -1,6 +1,6 @@
-using Monk.Tok;
+using Monk.Core.Tok;
 
-namespace Monk.Lex;
+namespace Monk.Core.Lex;
 
 public class Lexer {
     public string input;
@@ -33,7 +33,7 @@ public class Lexer {
         readPosition++;
     }
 
-    private Token NextToken() {
+    public Token NextToken() {
         Token tok;
         SkipWhitespace();
         switch (currentChar) {

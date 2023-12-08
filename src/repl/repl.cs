@@ -1,9 +1,9 @@
 using System;
 using System.IO;
-using Monk.Lex;
-using Monk.Tok;
+using Monk.Core.Lex;
+using Monk.Core.Tok;
 
-namespace Monk.Repl;
+namespace Monk.Core.Repl;
 
 public class REPL {
     const string prompt = "Monkey >> ";
