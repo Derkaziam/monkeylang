@@ -3,26 +3,22 @@ using Monk.Core.Lex;
 
 namespace Monk.Core.Parse;
 
-public static class Associations {
-    public static Func<Expression> PrefixParseFn;
-    public static Func<Expression, Expression> InfixParseFn;
-}
+public delegate Expression PrefixParseFn();
+public delegate Expression InfixParseFn(Expression expr);
 
 public class Parser {
     Lexer lexer;
     Token curToken;
     Token peekToken;
     public List<string> errors;
-    Dictionary<TokenType, Associations.PrefixParseFn> prefixParseFns = new ();
-    Dictionary<TokenType, Associations.InfixParseFn> infixParseFns = new ();
+    Dictionary<TokenType, PrefixParseFn> prefixParseFns = new ();
+    Dictionary<TokenType, InfixParseFn> infixParseFns = new ();
 
     public Parser(Lexer l) {
         lexer = l;
         errors = new List<string>();
         curToken = lexer.NextToken();
         peekToken = lexer.NextToken();
-        prefixParseFns = new ();
-        RegisterPrefix(TokenType.IDENT, ParseIdentifier());
     }
 
     public List<string> Errors() {
@@ -99,26 +95,13 @@ public class Parser {
     private ExpressionStatement ParseExpressionStatement() {
         ExpressionStatement stmt = new (curToken);
 
-        stmt.Expression = ParseExpression(Precedence.LOWEST);
+        NextToken();
 
         while (!PeekTokenIs(TokenType.SEMICOLON)) {
             NextToken();
         }
 
         return stmt;
-    }
-
-    private Expression ParseExpression(Precedence precedence) {
-        PrefixParseFn prefix = prefixParseFns[curToken.Type];
-        if (prefix == null) {
-            return null;
-        }
-        var leftExp = prefix();
-        return leftExp; 
-    }
-
-    private Expression ParseIdentifier() {
-        return new Identifier(curToken, curToken.Value);
     }
 
     private bool CurTokenIs(TokenType t) {
@@ -148,12 +131,3 @@ public class Parser {
     }
 }
 
-public enum Precedence {
-    LOWEST,
-    EQUALS,
-    LESSGREATER,
-    SUM,
-    PRODUCT,
-    PREFIX,
-    CALL
-} 
