@@ -3,3 +3,17 @@
 /workspaces/monkeylang/obj/Debug/net7.0/Monk.AssemblyInfoInputs.cache
 /workspaces/monkeylang/obj/Debug/net7.0/Monk.AssemblyInfo.cs
 /workspaces/monkeylang/obj/Debug/net7.0/Monk.csproj.CoreCompileInputs.cache
+F:\programs\personal\c#\Languages\monkeylang\obj\Debug\net7.0\Monk.GeneratedMSBuildEditorConfig.editorconfig
+F:\programs\personal\c#\Languages\monkeylang\obj\Debug\net7.0\Monk.AssemblyInfoInputs.cache
+F:\programs\personal\c#\Languages\monkeylang\obj\Debug\net7.0\Monk.AssemblyInfo.cs
+F:\programs\personal\c#\Languages\monkeylang\obj\Debug\net7.0\Monk.csproj.CoreCompileInputs.cache
+F:\programs\personal\c#\Languages\monkeylang\bin\Debug\net7.0\Monk.exe
+F:\programs\personal\c#\Languages\monkeylang\bin\Debug\net7.0\Monk.deps.json
+F:\programs\personal\c#\Languages\monkeylang\bin\Debug\net7.0\Monk.runtimeconfig.json
+F:\programs\personal\c#\Languages\monkeylang\bin\Debug\net7.0\Monk.dll
+F:\programs\personal\c#\Languages\monkeylang\bin\Debug\net7.0\Monk.pdb
+F:\programs\personal\c#\Languages\monkeylang\obj\Debug\net7.0\Monk.dll
+F:\programs\personal\c#\Languages\monkeylang\obj\Debug\net7.0\refint\Monk.dll
+F:\programs\personal\c#\Languages\monkeylang\obj\Debug\net7.0\Monk.pdb
+F:\programs\personal\c#\Languages\monkeylang\obj\Debug\net7.0\Monk.genruntimeconfig.cache
+F:\programs\personal\c#\Languages\monkeylang\obj\Debug\net7.0\ref\Monk.dll
