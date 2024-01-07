@@ -17,3 +17,4 @@ F:\programs\personal\c#\Languages\monkeylang\obj\Debug\net7.0\refint\Monk.dll
 F:\programs\personal\c#\Languages\monkeylang\obj\Debug\net7.0\Monk.pdb
 F:\programs\personal\c#\Languages\monkeylang\obj\Debug\net7.0\Monk.genruntimeconfig.cache
 F:\programs\personal\c#\Languages\monkeylang\obj\Debug\net7.0\ref\Monk.dll
+F:\programs\personal\c#\Languages\monkeylang\obj\Debug\net7.0\Monk.sourcelink.json
