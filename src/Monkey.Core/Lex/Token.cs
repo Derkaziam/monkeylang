@@ -1,4 +1,4 @@
-namespace Monk.Core.Tok;
+namespace Monk.Core.Lex;
 
 /// <summary>
 /// Token is a struct that represents a token.

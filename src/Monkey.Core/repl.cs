@@ -1,8 +1,7 @@
-using System;
-using System.IO;
+using System.ComponentModel;
+using Monk.Core.Evaluate;
 using Monk.Core.Lex;
 using Monk.Core.Parse;
-using Monk.Core.Tok;
 
 namespace Monk.Core.Repl;
 
@@ -26,7 +25,10 @@ public class REPL {
                 continue;
             }
 
-            Console.WriteLine(program.ToString());
+            var evaluated = Evaluator.Eval(program);
+            if (evaluated != null) {
+                Console.WriteLine(evaluated.Inspect());
+            }
         }
     }
 

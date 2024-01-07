@@ -1,5 +1,4 @@
-using System.Linq.Expressions;
-using Monk.Core.Tok;
+using Monk.Core.Lex;
 
 namespace Monk.Core.Parse;
 
@@ -136,9 +135,9 @@ public record IntegerLiteral : IExpression {
 }
 
 public record PrefixExpression : IExpression {
-    Token Tok;
-    string Operator;
-    IExpression? Right;
+    public Token Tok;
+    public string Operator;
+    public IExpression? Right;
     public PrefixExpression(Token tok, string op, IExpression? right) {
         Tok = tok;
         Operator = op;
@@ -150,10 +149,10 @@ public record PrefixExpression : IExpression {
 }
 
 public record InfixExpression : IExpression {
-    Token Tok;
-    IExpression? Left;
-    string Operator;
-    IExpression? Right;
+    public Token Tok;
+    public IExpression? Left;
+    public string Operator;
+    public IExpression? Right;
     public InfixExpression(Token tok, IExpression? left, string op, IExpression? right) {
         Tok = tok;
         Left = left;

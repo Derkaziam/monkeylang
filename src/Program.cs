@@ -1,7 +1,7 @@
 ﻿using Monk.Core.Lex;
-using Monk.Core.Tok;
 using Monk.Core.Repl;
 using Monk.Core.Parse;
+using Monk.Core.Evaluate;
 
 namespace Monk.Core;
 
@@ -9,22 +9,15 @@ class Program {
     static void Main(string[] args) {
         if (args.Length > 0 && args[0] == "repl") REPL();
 
-        string input = @"let x = 5;
-let y = 10;
-let z = 838383;
-return 0;
-!true;
--0;
-9 + 9 - 9;
-a + b * (c + d) / e - f;
-if (x < y) { x; } else { y; }
-fn(x) { return x; };
-fn(x, y, z) {};
-add(2 + 2);";
+        string input = @"5;";
         Lexer l = new(input);
         Parser p = new(l);
 
         var program = p.ParseProgram();
+
+        var e = Evaluator.Eval(program);
+
+        Console.WriteLine(e.ToString());
         
         if (program == null) {
             Console.WriteLine("No program");
