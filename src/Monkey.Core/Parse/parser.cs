@@ -11,8 +11,8 @@ public class Parser {
     Token curToken;
     Token peekToken;
     public List<string> errors;
-    readonly Dictionary<TokenType, PrefixParseFn> prefixParseFns = [];
-    readonly Dictionary<TokenType, InfixParseFn> infixParseFns = [];
+    readonly Dictionary<TokenType, PrefixParseFn> prefixParseFns = new();
+    readonly Dictionary<TokenType, InfixParseFn> infixParseFns = new();
 
     private enum PrecedenceLevel {
         LOWEST,
@@ -82,7 +82,7 @@ public class Parser {
         ProgramNode p = new ();
 
         while (curToken.Type != TokenType.EOF) {
-            IStatement stmt = ParseStatement();
+            IStatement? stmt = ParseStatement();
             if (stmt != null) {
                 p.Statements.Add(stmt);
             }
@@ -296,7 +296,7 @@ public class Parser {
     }
 
     private List<Identifier>? ParseFunctionParameters() {
-        List<Identifier> identifiers = [];
+        List<Identifier> identifiers = new();
 
         if (PeekTokenIs(TokenType.RPAREN)) {
             NextToken();
@@ -326,7 +326,7 @@ public class Parser {
     }
 
     private List<IExpression>? ParseCallArguments() {
-        List<IExpression> args = [];
+        List<IExpression> args = new();
 
         if (PeekTokenIs(TokenType.RPAREN)) {
             NextToken();

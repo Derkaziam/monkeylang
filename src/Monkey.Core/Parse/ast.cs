@@ -206,12 +206,12 @@ public record FunctionLiteral : IExpression {
     public void ExpressionNode() { }
     public string TokenLiteral() { return Tok.Value; }
     public override string ToString() {
-        if (Parameters == null) return $"fn() {{{Body}}}";
+        if (Parameters == null) return $"fn() {{{Body} }}";
 
-        List<string> str = [];
+        List<string> str = new();
         foreach (var p in Parameters) str.Add(p.ToString());
 
-        return $"fn({string.Join(", ", str)}) {{{Body }}}";
+        return $"fn({string.Join(", ", str)}) {{{Body} }}";
     }
 }
 
@@ -229,7 +229,7 @@ public record CallExpression : IExpression {
     public override string ToString() {
         if (Arguments == null) return $"{Function}()";
         
-        List<string> str = [];
+        List<string> str = new();
         foreach (var a in Arguments) str.Add(a.ToString());
 
         return $"{Function}({string.Join(", ", str)})";

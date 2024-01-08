@@ -7,17 +7,19 @@ namespace Monk.Core;
 
 class Program {
     static void Main(string[] args) {
-        if (args.Length > 0 && args[0] == "repl") REPL();
-
         string input = @"5;";
+
+        if (args.Length > 0 && args[0] == "repl") REPL();
+        else if (args.Length > 0) input = File.ReadAllText(args[0]); 
+
         Lexer l = new(input);
         Parser p = new(l);
 
         var program = p.ParseProgram();
 
-        var e = Evaluator.Eval(program);
+        // var e = Evaluator.Eval(program);
 
-        Console.WriteLine(e.ToString());
+        // Console.WriteLine(e.ToString());
         
         if (program == null) {
             Console.WriteLine("No program");
