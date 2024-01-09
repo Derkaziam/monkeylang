@@ -9,21 +9,21 @@ public enum ObjectType {
 }
 
 public interface IObject {
-    ObjectType Type { get; }
+    ObjectType Type();
     string Inspect();
 }
 
 public record MonkeyInteger(long Value) : IObject {
-    public ObjectType Type => ObjectType.INTEGER;
+    public ObjectType Type() => ObjectType.INTEGER;
     public string Inspect() => $"{Value}"; 
 }
 
 public record MonkeyBoolean(bool Value) : IObject {
-    public ObjectType Type => ObjectType.BOOLEAN;
+    public ObjectType Type() => ObjectType.BOOLEAN;
     public string Inspect() => $"{Value}"; 
 }
 
 public record MonkeyNull : IObject {
-    public ObjectType Type => ObjectType.NULL;
+    public ObjectType Type() => ObjectType.NULL;
     public string Inspect() => $"null"; 
 }

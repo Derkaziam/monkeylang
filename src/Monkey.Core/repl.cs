@@ -20,6 +20,8 @@ public class REPL {
             Parser p = new(l);
 
             var program = p.ParseProgram();
+
+            // Check for errors and print if any
             if (p.Errors().Count != 0) {
                 PrintParseErrors(output, p.Errors());
                 continue;

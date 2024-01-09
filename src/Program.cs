@@ -7,7 +7,7 @@ namespace Monk.Core;
 
 class Program {
     static void Main(string[] args) {
-        string input = @"5;";
+        string input = @"true == true;";
 
         if (args.Length > 0 && args[0] == "repl") REPL();
         else if (args.Length > 0) input = File.ReadAllText(args[0]); 
@@ -17,9 +17,9 @@ class Program {
 
         var program = p.ParseProgram();
 
-        // var e = Evaluator.Eval(program);
+        var e = Evaluator.Eval(program);
 
-        // Console.WriteLine(e.ToString());
+        Console.WriteLine(e.ToString());
         
         if (program == null) {
             Console.WriteLine("No program");

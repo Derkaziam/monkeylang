@@ -1,38 +1,37 @@
 {
   "format": 1,
   "restore": {
-    "F:\\programs\\personal\\c#\\Languages\\monkeylang\\Monk.csproj": {}
+    "D:\\programs\\personal\\c#\\Languages\\monkeylang\\Monk.csproj": {}
   },
   "projects": {
-    "F:\\programs\\personal\\c#\\Languages\\monkeylang\\Monk.csproj": {
+    "D:\\programs\\personal\\c#\\Languages\\monkeylang\\Monk.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\programs\\personal\\c#\\Languages\\monkeylang\\Monk.csproj",
+        "projectUniqueName": "D:\\programs\\personal\\c#\\Languages\\monkeylang\\Monk.csproj",
         "projectName": "Monk",
-        "projectPath": "F:\\programs\\personal\\c#\\Languages\\monkeylang\\Monk.csproj",
-        "packagesPath": "C:\\Users\\drago\\.nuget\\packages\\",
-        "outputPath": "F:\\programs\\personal\\c#\\Languages\\monkeylang\\obj\\",
+        "projectPath": "D:\\programs\\personal\\c#\\Languages\\monkeylang\\Monk.csproj",
+        "packagesPath": "C:\\Users\\jh300157\\.nuget\\packages\\",
+        "outputPath": "D:\\programs\\personal\\c#\\Languages\\monkeylang\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Users\\drago\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\drago\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Users\\drago\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config",
+          "C:\\Users\\jh300157\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -43,8 +42,8 @@
         }
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "imports": [
             "net461",
             "net462",
@@ -61,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }
