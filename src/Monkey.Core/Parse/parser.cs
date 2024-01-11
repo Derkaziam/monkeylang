@@ -22,6 +22,7 @@ public class Parser {
         PRODUCT, // *
         PREFIX, // -X or !X
         CALL, // myFunction(X)
+        INDEX, // array[index]
     }
 
     readonly Dictionary<TokenType, PrecedenceLevel> precedences = new() {
@@ -34,6 +35,7 @@ public class Parser {
         { TokenType.SLASH, PrecedenceLevel.PRODUCT },
         { TokenType.ASTERISK, PrecedenceLevel.PRODUCT },
         { TokenType.LPAREN, PrecedenceLevel.CALL },
+        { TokenType.LBRACKET, PrecedenceLevel.INDEX },
     };
 
     public Parser(Lexer l) {
@@ -52,6 +54,8 @@ public class Parser {
         RegisterPrefix(TokenType.LPAREN, ParseGroupedExpression);
         RegisterPrefix(TokenType.IF, ParseIfExpression);
         RegisterPrefix(TokenType.FUNCTION, ParseFunctionLiteral);
+        RegisterPrefix(TokenType.STRING, ParseStringLiteral);
+        RegisterPrefix(TokenType.LBRACKET, ParseArrayLiteral);
 
         // Infixes
         RegisterInfix(TokenType.PLUS, ParseInfixExpression);
@@ -63,6 +67,7 @@ public class Parser {
         RegisterInfix(TokenType.LT, ParseInfixExpression);
         RegisterInfix(TokenType.GT, ParseInfixExpression);
         RegisterInfix(TokenType.LPAREN, ParseCallExpression);
+        RegisterInfix(TokenType.LBRACKET, ParseIndexExpression);
 
     }
 
@@ -240,6 +245,7 @@ public class Parser {
     }
 
     private IExpression? ParseIdentifier() => new Identifier(curToken, curToken.Value);
+    private IExpression? ParseStringLiteral() => new StringLiteral(curToken, curToken.Value);
 
     private IExpression? ParseIntegerLiteral() {
         if (!long.TryParse(curToken.Value, out long val))
@@ -321,8 +327,44 @@ public class Parser {
         return identifiers;
     }
 
+    private IExpression? ParseArrayLiteral() {
+        Token tok = curToken;
+        List<IExpression>? elements = ParseExpressionList(TokenType.RBRACKET);
+        if (elements == null) return null;
+        return new ArrayLiteral(tok, elements);
+    }
+
+    private List<IExpression>? ParseExpressionList(TokenType end) {
+        List<IExpression> list = new();
+
+        if (PeekTokenIs(end)) {
+            NextToken();
+            return list;
+        }
+
+        NextToken();
+        list.Add(ParseExpression(PrecedenceLevel.LOWEST));
+        
+        while (PeekTokenIs(TokenType.COMMA)) {
+            NextToken();
+            NextToken();
+            list.Add(ParseExpression(PrecedenceLevel.LOWEST));
+        }
+
+        if (!ExpectPeek(end)) return null;
+        return list;
+    }
+
     private IExpression? ParseCallExpression(IExpression function) {
-        return new CallExpression(curToken, function, ParseCallArguments());
+        return new CallExpression(curToken, function, ParseExpressionList(TokenType.RPAREN));
+    }
+    
+    private IExpression? ParseIndexExpression(IExpression left) {
+        Token tok = curToken;
+        NextToken();
+        IExpression? index = ParseExpression(PrecedenceLevel.LOWEST);
+        if (!ExpectPeek(TokenType.RBRACKET)) return null;
+        return new IndexExpression(tok, left, index);
     }
 
     private List<IExpression>? ParseCallArguments() {

@@ -7,6 +7,7 @@ namespace Monk.Core;
 
 class Program {
     static void Main(string[] args) {
+        MonkeyEnvironment env = new();
         string input = @"true == true;";
 
         if (args.Length > 0 && args[0] == "repl") REPL();
@@ -17,19 +18,19 @@ class Program {
 
         var program = p.ParseProgram();
 
-        var e = Evaluator.Eval(program);
-
-        Console.WriteLine(e.ToString());
         
         if (program == null) {
             Console.WriteLine("No program");
             return;
         }
 
-        Console.WriteLine(program.ToString());
-        foreach (string s in p.errors) {
-            Console.WriteLine(s);
+        if (p.errors.Count > 0) {
+            foreach (string s in p.errors) {
+                Console.WriteLine(s);
+            }
         }
+
+        var e = Evaluator.Eval(program, env);
     }
 
     public static void REPL() {

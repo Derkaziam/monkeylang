@@ -1,15 +1,17 @@
-let five = 5;
-let ten = 10;
-let add = fn(x, y) {
-    x + y;
+let map = fn(arr, f) {
+    let iter = fn(arr, accumulated) {
+        if (len(arr) == 0) {
+            accumulated
+        } else {
+            iter(rest(arr), push(accumulated, f(first(arr))));
+        }
+    };
+
+    iter(arr, []);
 };
 
-let result = add(five, ten);
-!0 / 5;
-5 < 10 > 5;
+let a = [1, 2, 3, 4];
+let b = map(a, fn(x) { x * 2 });
 
-if (5 < 10) {
-    return true;
-} else {
-    return false;
-}
+println(a);
+println(b);

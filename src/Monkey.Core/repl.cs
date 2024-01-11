@@ -9,6 +9,7 @@ public class REPL {
     const string prompt = "Monkey >> ";
 
     public void Start(TextReader input, TextWriter output) {
+        MonkeyEnvironment env = new();
         while (true) {
             output.Write(prompt);
             var line = input.ReadLine();
@@ -27,7 +28,7 @@ public class REPL {
                 continue;
             }
 
-            var evaluated = Evaluator.Eval(program);
+            var evaluated = Evaluator.Eval(program, env);
             if (evaluated != null) {
                 Console.WriteLine(evaluated.Inspect());
             }

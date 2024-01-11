@@ -44,8 +44,10 @@ public enum TokenType {
 
     IDENT,
     INT,
+    FLOAT,
     TRUE,
     FALSE,
+    STRING,
 
     // Operators
     ASSIGN,
@@ -68,6 +70,8 @@ public enum TokenType {
     RPAREN,
     LBRACE,
     RBRACE,
+    LBRACKET,
+    RBRACKET,
 
     FUNCTION,
     LET,

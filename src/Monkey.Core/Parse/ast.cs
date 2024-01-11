@@ -98,6 +98,33 @@ public record IntegerLiteral : IExpression {
     public override string ToString() { return Value.ToString(); }
 }
 
+public record ArrayLiteral(Token Tok, List<IExpression> Elements) : IExpression {
+    public void ExpressionNode() { }
+    public string TokenLiteral() => Tok.Value;
+    public override string ToString() {
+        string str = "[";
+        foreach (IExpression e in Elements) {
+            str += " " + e.ToString() + ",";
+        }
+        return str += "]";
+    }
+}
+
+public record BooleanLiteral : IExpression {
+    public Token Tok;
+    public bool Value;
+    public BooleanLiteral(Token tok, bool value) { Tok = tok; Value = value; }
+    public void ExpressionNode() { }
+    public string TokenLiteral() { return Tok.Value; }
+    public override string ToString() { return Value.ToString(); }
+}
+
+public record StringLiteral(Token Tok, string Value) : IExpression {
+    public void ExpressionNode() { }
+    public string TokenLiteral() { return Tok.Value; }
+    public override string ToString() { return Value.ToString(); }
+}
+
 public record PrefixExpression(Token Tok, string Operator, IExpression Right) : IExpression {
     public void ExpressionNode() { }
     public string TokenLiteral() { return Tok.Value; }
@@ -110,26 +137,7 @@ public record InfixExpression(Token Tok, IExpression Left, string Operator, IExp
     public override string ToString() { return $"({Left} {Operator} {Right})"; }
 }
 
-public record BooleanLiteral : IExpression {
-    public Token Tok;
-    public bool Value;
-    public BooleanLiteral(Token tok, bool value) { Tok = tok; Value = value; }
-    public void ExpressionNode() { }
-    public string TokenLiteral() { return Tok.Value; }
-    public override string ToString() { return Value.ToString(); }
-}
-
-public record IfExpression : IExpression {
-    public Token Tok;
-    public IExpression? Condition;
-    public BlockStatement? Consequence;
-    public BlockStatement? Alternative;
-    public IfExpression(Token tok, IExpression? condition, BlockStatement? consequence, BlockStatement? alternative) {
-        Tok = tok;
-        Condition = condition;
-        Consequence = consequence;
-        Alternative = alternative;
-    }
+public record IfExpression(Token Tok, IExpression Condition, BlockStatement Consequence, BlockStatement Alternative) : IExpression {
     public void ExpressionNode() { }
     public string TokenLiteral() { return Tok.Value; }
     public override string ToString() { 
@@ -140,15 +148,7 @@ public record IfExpression : IExpression {
     }
 }
 
-public record FunctionLiteral : IExpression {
-    public Token Tok;
-    public List<Identifier>? Parameters;
-    public BlockStatement? Body;
-    public FunctionLiteral(Token tok, List<Identifier>? parameters, BlockStatement? body) {
-        Tok = tok;
-        Parameters = parameters;
-        Body = body;
-    }
+public record FunctionLiteral(Token Tok, List<Identifier> Parameters, BlockStatement Body) : IExpression {
     public void ExpressionNode() { }
     public string TokenLiteral() { return Tok.Value; }
     public override string ToString() {
@@ -161,15 +161,7 @@ public record FunctionLiteral : IExpression {
     }
 }
 
-public record CallExpression : IExpression {
-    public Token Tok;
-    public IExpression? Function;
-    public List<IExpression>? Arguments;
-    public CallExpression(Token token, IExpression? function, List<IExpression>? arguments) {
-        Tok = token;
-        Function = function;
-        Arguments = arguments;
-    }
+public record CallExpression(Token Tok, IExpression Function, List<IExpression> Arguments) : IExpression {
     public void ExpressionNode() { }
     public string TokenLiteral() { return Tok.Value; }
     public override string ToString() {
@@ -179,5 +171,13 @@ public record CallExpression : IExpression {
         foreach (var a in Arguments) str.Add(a.ToString());
 
         return $"{Function}({string.Join(", ", str)})";
+    }
+}
+
+public record IndexExpression(Token Tok, IExpression Left, IExpression Index) : IExpression {
+    public void ExpressionNode() { }
+    public string TokenLiteral() { return Tok.Value; }
+    public override string ToString() {
+        return $"({Left}[{Index}])";
     }
 }

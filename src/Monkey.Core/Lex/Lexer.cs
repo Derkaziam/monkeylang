@@ -1,5 +1,3 @@
-using Monk.Core.Lex;
-
 namespace Monk.Core.Lex;
 
 public class Lexer {
@@ -60,6 +58,12 @@ public class Lexer {
         case '}':
             tok = NewToken(TokenType.RBRACE, "}");
             break;
+        case '[':
+            tok = NewToken(TokenType.LBRACKET, "[");
+            break;
+        case ']':
+            tok = NewToken(TokenType.RBRACKET, "]");
+            break;
         case ',':
             tok = NewToken(TokenType.COMMA, ",");
             break;
@@ -88,6 +92,9 @@ public class Lexer {
             break;
         case '>':
             tok = NewToken(TokenType.GT, ">");
+            break;
+        case '"':
+            tok = NewToken(TokenType.STRING, ReadString());
             break;
         case '\0':
             tok = NewToken(TokenType.EOF, "\0");
@@ -135,6 +142,14 @@ public class Lexer {
         while (IsDigit(currentChar)) {
             ReadChar();
         }
+        return input[pos..position];
+    }
+
+    private string ReadString() {
+        int pos = position + 1;
+        do {
+            ReadChar();
+        } while (currentChar != '"' && currentChar != '\0');
         return input[pos..position];
     }
 
